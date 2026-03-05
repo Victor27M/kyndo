@@ -1,0 +1,56 @@
+/* src/index.css � clean reset for full-width app (kills Vite boilerplate) */
+
+:root {
+    --bg: #fff;
+    --text: #111;
+    --line: #e5e5e5;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Fenix", serif; /* <- back to your original font */
+    line-height: 1.4;
+    max-width: 100vw;
+}
+
+
+/* Make the app span the full width (undo Vite's max-width & padding) */
+#root {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Reasonable defaults */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    background: transparent;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+}
