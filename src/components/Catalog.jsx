@@ -33,7 +33,7 @@ export default function Catalog() {
   return (
     <section className="catalog__section">
       <div className="container">
-        <h1 className="catalog__heading">Our Collection</h1>
+        <h1 className="catalog__heading">Our Products</h1>
         <div className="catalog__grid">
           {CATALOG_PRODUCTS.map((product) => (
             <div

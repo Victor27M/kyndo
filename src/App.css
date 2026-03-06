@@ -140,11 +140,13 @@ img, button, input, select, textarea,
 .logo {
     font-family: "Fenix", serif;
     font-weight: 800;
+    font-synthesis: weight;
     font-size: 1.5rem;
     letter-spacing: 0;
     color: #111;
     text-decoration: none;
     flex-shrink: 0;
+    text-shadow: 0 0 0.25px currentColor, 0.25px 0 currentColor;
 }
 
 /* Centered nav with hover dots */
@@ -784,7 +786,7 @@ img, button, input, select, textarea,
 .catalog__heading {
     font-family: "Fenix", serif;
     font-size: 2.5rem;
-    font-weight: 400;
+    font-weight: 800;
     margin: 0 0 48px;
     text-align: center;
     letter-spacing: 0.02em;
