@@ -3,10 +3,15 @@
  * Central repository for all product definitions, variants, and options
  */
 
-import lampBlue from '../assets/parts/lamp-blue.jpg';
-import lampGraphite from '../assets/parts/lamp-graphite.jpg';
-import lampSand from '../assets/parts/lamp-sand.jpg';
-import lampRed from '../assets/parts/lamp-red.jpg';
+import lampBlue from '../assets/products/lamp/lamp-blue.jpg';
+import lampGraphite from '../assets/products/lamp/lamp-graphite.jpg';
+import lampSand from '../assets/products/lamp/lamp-sand.jpg';
+import lampRed from '../assets/products/lamp/lamp-red.jpg';
+import calendarBlue from '../assets/products/calendar/perpetual-calendar-blue.jpg';
+import calendarWhite from '../assets/products/calendar/perpetual-calendar-white.jpg';
+import calendarGreen from '../assets/products/calendar/perpetual-calendar-green.jpg';
+import calendarBordoux from '../assets/products/calendar/perpetual-calendar-bordoux.jpg';
+
 
 /**
  * Cable options for customization
@@ -26,10 +31,10 @@ export const CABLE_OPTIONS = [
 ];
 
 /**
- * Color variants with swatches and images
+ * Lamp color variants with swatches and images
  * @type {Array<{key: string, label: string, swatch: string, image: string}>}
  */
-export const COLOR_VARIANTS = [
+export const LAMP_COLOR_VARIANTS = [
   { key: 'blue', label: 'Blue', swatch: '#2358C5', image: lampBlue },
   { key: 'graphite', label: 'Graphite', swatch: '#2b2b2b', image: lampGraphite },
   { key: 'sand', label: 'Sand', swatch: '#d8c9ae', image: lampSand },
@@ -37,28 +42,95 @@ export const COLOR_VARIANTS = [
 ];
 
 /**
+ * Calendar color variants with swatches and images
+ * @type {Array<{key: string, label: string, swatch: string, image: string}>}
+ */
+export const CALENDAR_COLOR_VARIANTS = [
+  { key: 'white', label: 'White', swatch: '#ffffff', image: calendarWhite },
+  { key: 'blue', label: 'Blue', swatch: '#2d3fe1', image: calendarBlue },
+  { key: 'green', label: 'Green', swatch: '#0c4123', image: calendarGreen },
+  { key: 'bordoux', label: 'Bordeaux', swatch: '#800020', image: calendarBordoux },
+  
+];
+
+// Backward compatibility for existing Store component
+export const COLOR_VARIANTS = LAMP_COLOR_VARIANTS;
+
+/**
  * Price configuration by cable type
  * @type {Object<string, number>}
  */
 export const PRICING = {
-  standard: 149.99,
-  premium: 199.99,
+  standard: 199.99,
+  premium: 259.99,
 };
 
 /**
- * Catalog products
- * @type {Array<{id: number, name: string, price: number, image: string}>}
+ * Main product definitions
+ * Add a new product here and it will automatically appear in catalog and be routable
+ * @type {Array<{
+ *   id: string,
+ *   slug: string,
+ *   name: string,
+ *   basePrice: number,
+ *   image: string,
+ *   description: string,
+ *   inStock: boolean,
+ *   stockLabel: string,
+ *   hasCableOptions: boolean,
+ *   cableOptions?: Array<{key: string, label: string, desc: string}>,
+ *   colorVariants: Array<{key: string, label: string, swatch: string, image: string}>
+ * }>}
  */
-export const CATALOG_PRODUCTS = [
-  { id: 1, name: 'Nemuri Lamp', price: 149.99, image: lampBlue },
-  { id: 2, name: 'Nemuri Lamp', price: 149.99, image: lampGraphite },
-  { id: 3, name: 'Nemuri Lamp', price: 149.99, image: lampSand },
-  { id: 4, name: 'Nemuri Lamp', price: 149.99, image: lampRed },
-  { id: 5, name: 'Nemuri Lamp', price: 149.99, image: lampBlue },
-  { id: 6, name: 'Nemuri Lamp', price: 149.99, image: lampGraphite },
-  { id: 7, name: 'Nemuri Lamp', price: 149.99, image: lampSand },
-  { id: 8, name: 'Nemuri Lamp', price: 149.99, image: lampRed },
+export const PRODUCTS = [
+  {
+    id: 'nemuri-lamp',
+    slug: 'lamp',
+    name: 'Nemuri Lamp',
+    basePrice: PRICING.standard,
+    image: lampBlue,
+    description:
+      'A sculptural silhouette with a soft glow. Sustainably made, modular for easy repair, and designed to complement calm interiors.',
+    inStock: true,
+    stockLabel: 'Made to order',
+    hasCableOptions: true,
+    cableOptions: CABLE_OPTIONS,
+    colorVariants: LAMP_COLOR_VARIANTS,
+  },
+  {
+    id: 'perpetual-calendar',
+    slug: 'calendar',
+    name: 'Perpetual Calendar',
+    basePrice: 99.99,
+    image: calendarWhite,
+    description:
+      'A timeless desk companion designed to be part of your daily ritual. Sustainable construction with a minimal aesthetic that fits any space.',
+    inStock: true,
+    stockLabel: 'In Stock',
+    hasCableOptions: false,
+    colorVariants: CALENDAR_COLOR_VARIANTS,
+  },
 ];
+
+/**
+ * Catalog products derived from product definitions
+ * @type {Array<{id: string, name: string, price: number, image: string, route: string}>}
+ */
+export const CATALOG_PRODUCTS = PRODUCTS.map((product) => ({
+  id: product.id,
+  name: product.name,
+  price: product.basePrice,
+  image: product.image,
+  route: `/shop/${product.slug}`,
+}));
+
+/**
+ * Get product definition by slug
+ * @param {string} slug - Product slug (e.g., lamp, calendar)
+ * @returns {Object|undefined} Product definition or undefined
+ */
+export const getProductBySlug = (slug) =>
+  PRODUCTS.find((product) => product.slug === slug);
 
 /**
  * Get price for given cable option
@@ -73,7 +145,16 @@ export const getPriceForCable = (cableKey) => PRICING[cableKey] || PRICING.stand
  * @returns {Object|undefined} Color object or undefined
  */
 export const getColorByKey = (colorKey) =>
-  COLOR_VARIANTS.find((color) => color.key === colorKey);
+  LAMP_COLOR_VARIANTS.find((color) => color.key === colorKey);
+
+/**
+ * Get color by key in a specific color set
+ * @param {string} colorKey - Color key
+ * @param {Array<{key: string, label: string, swatch: string, image: string}>} variants - Variant list
+ * @returns {Object|undefined} Color object or undefined
+ */
+export const getColorByKeyInVariants = (colorKey, variants = []) =>
+  variants.find((color) => color.key === colorKey);
 
 /**
  * Get color swatch hex by key

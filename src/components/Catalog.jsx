@@ -4,30 +4,29 @@ import { CATALOG_PRODUCTS } from '../data/products.js';
 
 /**
  * Catalog Component
- * Displays grid of products available for purchase
- * Each product is clickable and navigates to the product detail page
+ * Displays main products side by side (centered)
+ * Each product is clickable and navigates to dedicated product page
  */
 export default function Catalog() {
   const navigate = useNavigate();
 
   /**
-   * Handle product click and navigate to product detail
-   * @param {number} productId - Product ID to navigate to
+   * Handle product click and navigate to product page
+   * @param {string} route - Product route path
    */
-  const handleProductClick = (productId) => {
-    navigate(`/product/${productId}`);
+  const handleProductClick = (route) => {
+    navigate(route);
   };
 
   /**
    * Handle keyboard navigation for accessibility
-   * Allow Enter and Space keys to activate product selection
    * @param {React.KeyboardEvent} event - Keyboard event
-   * @param {number} productId - Product ID to navigate to
+   * @param {string} route - Product route path
    */
-  const handleKeyDown = (event, productId) => {
+  const handleKeyDown = (event, route) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      handleProductClick(productId);
+      handleProductClick(route);
     }
   };
 
@@ -40,10 +39,10 @@ export default function Catalog() {
             <div
               key={product.id}
               className="catalog__item"
-              onClick={() => handleProductClick(product.id)}
+              onClick={() => handleProductClick(product.route)}
               role="button"
               tabIndex={0}
-              onKeyDown={(event) => handleKeyDown(event, product.id)}
+              onKeyDown={(event) => handleKeyDown(event, product.route)}
               aria-label={`View ${product.name}`}
             >
               <div className="catalog__image-wrapper">
@@ -55,7 +54,7 @@ export default function Catalog() {
               </div>
               <div className="catalog__info">
                 <h3 className="catalog__name">{product.name}</h3>
-                <p className="catalog__price">{product.price.toFixed(2)} Lei</p>
+                <p className="catalog__price">From {product.price.toFixed(2)} Lei</p>
               </div>
             </div>
           ))}

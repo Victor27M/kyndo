@@ -791,13 +791,18 @@ img, button, input, select, textarea,
 }
 
 .catalog__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 40px;
-    width: 100%;
+    width: min(100%, 1080px);
+    margin: 0 auto;
 }
 
 .catalog__item {
+    flex: 0 1 calc((100% - 80px) / 3);
+    max-width: 320px;
+    min-width: 240px;
     cursor: pointer;
     transition: opacity 0.2s ease;
     background: transparent;
@@ -833,9 +838,17 @@ img, button, input, select, textarea,
 .catalog__name {
     font-family: "Fenix", serif;
     font-size: 1rem;
-    font-weight: 400;
-    margin: 0 0 4px;
+    font-weight: 700; /* Bold */
+    margin: 0 0 8px;
     color: var(--text);
+}
+
+.catalog__description {
+    font-family: "Fenix", serif;
+    font-size: 0.9rem;
+    margin: 0 0 8px;
+    color: var(--muted);
+    line-height: 1.45;
 }
 
 .catalog__price {
@@ -843,14 +856,19 @@ img, button, input, select, textarea,
     font-size: 0.95rem;
     font-weight: 400;
     margin: 0;
-    color: var(--muted);
+    color: var(--muted); /* Grey tone */
 }
 
 /* Responsive adjustments for catalog */
 @media (max-width: 960px) {
     .catalog__grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 32px;
+        gap: 28px;
+    }
+
+    .catalog__item {
+        flex-basis: calc((100% - 28px) / 2);
+        min-width: 220px;
+        max-width: 360px;
     }
 
     .catalog__heading {
@@ -861,8 +879,13 @@ img, button, input, select, textarea,
 
 @media (max-width: 600px) {
     .catalog__grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 32px;
+    }
+
+    .catalog__item {
+        flex-basis: 100%;
+        min-width: 0;
+        max-width: 420px;
     }
 
     .catalog__heading {
