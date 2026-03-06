@@ -19,23 +19,32 @@ export default function Custom() {
           viewport={VIEWPORT_SETTINGS}
         >
           <motion.h1 className="custom__title" variants={FADE_SLIDE_UP}>
-            Custom Orders
+            CUSTOM ORDERS
           </motion.h1>
 
+          <motion.h2 className="custom__headline" variants={FADE_SLIDE_UP}>
+            Your space is specific. Your lamp should be too.
+          </motion.h2>
+
           <motion.p className="custom__lead" variants={FADE_SLIDE_UP}>
-            Looking for something unique? We offer custom configurations and bespoke
-            designs.
+            The catalogue is a starting point. If you already have something in mind that doesn't exist on it — a colour, a proportion, a finish that matches something else in your room — this is where to start.
           </motion.p>
 
           <motion.p className="custom__text" variants={FADE_SLIDE_UP}>
-            Each custom project starts with a conversation about your space, your needs,
-            and your aesthetic preferences. We'll work with you to design and build a lamp
-            that's truly one-of-a-kind.
+            Custom orders at Kyndo work like a conversation, not a configuration tool. You fill in a form with roughly what you're imagining — dimensions, colours, context, references — and I'll follow up directly, by email or phone, to go through the details together.
+          </motion.p>
+
+          <motion.p className="custom__text" variants={FADE_SLIDE_UP}>
+            I'll be honest about what's possible and realistic about timelines. I'll tell you if an idea won't work before we go further. Pricing is based on design time — a simple colour change costs differently than a shape designed from scratch — and we'll agree on it before anything gets made.
+          </motion.p>
+
+          <motion.p className="custom__text" variants={FADE_SLIDE_UP}>
+            The only limit is physics. Colours, proportions, finishes, combinations — open. Unicorns — let's talk.
           </motion.p>
 
           <motion.div className="custom__cta" variants={FADE_SLIDE_UP}>
             <Link to="/notify" className="btn btn--solid">
-              Get in Touch
+              Tell me what you're imagining →
             </Link>
           </motion.div>
         </motion.div>

@@ -6,7 +6,6 @@ import SideCart from './SideCart.jsx';
 const NAVIGATION_LINKS = [
   { path: '/shop', label: 'Shop' },
   { path: '/custom', label: 'Custom' },
-  { path: '/learn', label: 'Learn' },
 ];
 
 /**

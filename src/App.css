@@ -912,21 +912,21 @@ img, button, input, select, textarea,
 .footer {
     background: #3040BA;
     color: #fff;
-    padding: 60px 0;
+    padding: 60px 0 40px;
     margin-top: auto;
 }
 
 .footer__wrapper {
     width: 92%;
-    max-width: 1240px;
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
 }
 
-/* Massive KYNDO branding */
+/* Logo branding - big at bottom */
 .footer__brand {
     width: 100%;
     display: flex;
@@ -935,37 +935,22 @@ img, button, input, select, textarea,
 }
 
 .footer__logo {
-    font-family: "Fenix", serif;
+    font-family: "Fenix",serif;   
     font-size: clamp(4rem, 15vw, 12rem);
     font-weight: 800;
     letter-spacing: 0.1em;
     color: #fff;
     margin: 0;
-    text-transform: uppercase;
     line-height: 1;
 }
 
-/* Secondary content */
-.footer__secondary {
-    width: 100%;
+/* Navigation links */
+.footer__links {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
     flex-wrap: wrap;
-    font-family: "Fenix", serif;
-    font-size: 0.9rem;
-}
-
-.footer__secondary--top {
-    gap: 40px;
-}
-
-.footer__links,
-.footer__social {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    justify-content: center;
 }
 
 .footer__link {
@@ -973,21 +958,127 @@ img, button, input, select, textarea,
     text-decoration: none;
     transition: opacity 0.2s ease;
     font-weight: 400;
+    font-family: "Fenix", serif;
+    font-size: 0.95rem;
 }
 
 .footer__link:hover {
     opacity: 0.7;
 }
 
-.footer__divider {
-    color: rgba(255, 255, 255, 0.5);
-    user-select: none;
+.footer__link--icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.footer__social-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Newsletter signup */
+.footer__newsletter {
+    width: 100%;
+    max-width: 400px;
+}
+
+.footer__newsletter-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.footer__newsletter-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-family: "Fenix", serif;
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.footer__newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer__newsletter-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.footer__newsletter-btn {
+    padding: 12px 24px;
+    background: #fff;
+    color: #3040BA;
+    border: none;
+    border-radius: 6px;
+    font-family: "Fenix", serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
+}
+
+.footer__newsletter-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+}
+
+.footer__newsletter-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.footer__newsletter-message {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+/* Bottom section - copyright and made in */
+.footer__bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
 
 .footer__copyright {
     margin: 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.85rem;
+    font-family: "Fenix", serif;
+}
+
+.footer__made-in {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    font-family: "Fenix", serif;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .footer__newsletter-form {
+        flex-direction: column;
+    }
+    
+    .footer__newsletter-btn {
+        width: 100%;
+    }
+    
+    .footer__links {
+        gap: 16px;
+        font-size: 0.9rem;
+    }
 }
 
 
@@ -1221,6 +1312,16 @@ img, button, input, select, textarea,
     text-align: center;
 }
 
+.learn__closing {
+    margin: 48px auto 0;
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.65;
+    text-align: center;
+}
+
 /* =========================
    CUSTOM PAGE
    ========================= */
@@ -1240,6 +1341,14 @@ img, button, input, select, textarea,
     font-weight: 800;
     font-size: clamp(28px, 4vw, 42px);
     letter-spacing: -0.01em;
+}
+
+.custom__headline {
+    margin: 0 auto 24px;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    color: #111;
+    line-height: 1.4;
 }
 
 .custom__lead {

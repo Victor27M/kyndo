@@ -61,7 +61,7 @@ export const COLOR_VARIANTS = LAMP_COLOR_VARIANTS;
  * @type {Object<string, number>}
  */
 export const PRICING = {
-  standard: 199.99,
+  standard: 179.99,
   premium: 259.99,
 };
 
