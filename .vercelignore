@@ -7,12 +7,3 @@ node_modules
 
 # Old API files (archived)
 api/_old
-
-# Source files not needed in production
-src
-tsconfig.json
-vite.config.js
-eslint.config.js
-
-# Documentation
-README.md
