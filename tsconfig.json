@@ -42,20 +42,20 @@
       "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
       "@data/*": ["src/data/*"],
-      "@api/*": ["api/*"],
-      "@api/types/*": ["api/types/*"],
-      "@api/services/*": ["api/services/*"],
-      "@api/repositories/*": ["api/repositories/*"],
-      "@api/controllers/*": ["api/controllers/*"],
-      "@api/middleware/*": ["api/middleware/*"],
-      "@api/errors/*": ["api/errors/*"],
-      "@api/utils/*": ["api/utils/*"],
-      "@api/config/*": ["api/config/*"]
+      "@api/*": ["server/*"],
+      "@api/types/*": ["server/types/*"],
+      "@api/services/*": ["server/services/*"],
+      "@api/repositories/*": ["server/repositories/*"],
+      "@api/controllers/*": ["server/controllers/*"],
+      "@api/middleware/*": ["server/middleware/*"],
+      "@api/errors/*": ["server/errors/*"],
+      "@api/utils/*": ["server/utils/*"],
+      "@api/config/*": ["server/config/*"]
     },
 
     "jsx": "react-jsx",
     "types": ["vite/client", "node"]
   },
-  "include": ["src", "api", "src/vite-env.d.ts"],
+  "include": ["src", "api", "server", "src/vite-env.d.ts"],
   "exclude": ["node_modules", "dist", ".vercel"]
 }
